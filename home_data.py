@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 
 def app(df):
@@ -19,7 +20,18 @@ def app(df):
 
     # Create a checkbox to get the summary.
     if st.checkbox("View Summary"):
-        st.dataframe(df.describe())
+        summary = df.describe()
+        st.dataframe(summary)
+
+        # Additional information: mean, median, and standard deviation
+        st.subheader("Additional Information:")
+        with st.expander("View additional information"):
+            additional_info = pd.DataFrame({
+                "Mean": df.mean(),
+                "Median": df.median(),
+                "Standard Deviation": df.std()
+            })
+            st.dataframe(additional_info)
 
     # Create multiple check box in row
     col_name, col_dtype, col_data = st.columns(3)
