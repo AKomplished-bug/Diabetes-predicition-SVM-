@@ -96,8 +96,7 @@ def app(df, X, y):
                 st.markdown('''### Remedies''')
                 components.html( """
                     <style>body{font-family:"Source Sans Pro", sans-serif; color:green;}</style>       
-        
-        <li>Consultation with Gynaecologist is recommended</li> 
+    
         <li>Controlled sugar in diet</li>      
         """)
                 
