@@ -2,6 +2,7 @@ import warnings
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
+from sklearn.ensemble import RandomForestClassifier
 
 
 
@@ -47,4 +48,34 @@ def app(df, X, y):
         ax=sns.histplot(data=df,x="Age",y="BloodPressure")
         st.pyplot()
 
+    if st.checkbox("Countplot of outcome"):
+        sns.countplot(x='Outcome', data=df)
+        st.pyplot()
+
+    if st.checkbox("feature importance"):
+        clf = RandomForestClassifier()
+        clf.fit(X.copy(), y.copy())  
+        feature_importances = clf.feature_importances_
+        plt.figure(figsize=(10, 6))
+        plt.barh(X.columns, feature_importances)
+        plt.xlabel('Feature Importance')
+        plt.ylabel('Feature')
+        plt.title('Feature Importance Plot')
+        st.pyplot()
+ 
+    if st.checkbox("risk factor analysis"):
+        mean_values = df.groupby('Outcome').mean().reset_index()
+        features = df.columns.drop(['Outcome'])
+        num_features = len(features)
+        fig, axes = plt.subplots(nrows=num_features, ncols=1, figsize=(10, 6*num_features))
+        fig.subplots_adjust(hspace=0.5)  # Adjust vertical spacing between subplots
+
+        for i, feature in enumerate(features):
+             ax = axes[i] if num_features > 1 else axes  # Handle single feature case
+             sns.barplot(data=mean_values, x='Outcome', y=feature, palette='pastel', ax=ax)
+             ax.set_title(f'Mean {feature} by Outcome')
+             ax.set_xlabel('Outcome')
+             ax.set_ylabel(f'Mean {feature}')
+
+        st.pyplot(fig)
 
