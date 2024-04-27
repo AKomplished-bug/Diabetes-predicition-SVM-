@@ -67,7 +67,7 @@ def app(df, X, y):
                         
                          """)
 
-    st.sidebar.info("Diabetes Mellitus is majorly affected by BMI, Insulin and Aftermeal Glucose Levels")
+    st.sidebar.info("This is just a prediction and it is advisable to consult a doctor for further diagnostics.")
 
     # Create a button to predict
     if st.button("Predict"):

@@ -17,3 +17,5 @@ def app():
             This Web app will help you to predict whether a person has diabetes or is prone to get diabetes in future by analysing the values of several features using the Support Vector Machine Algorithm.
         </p>
     """, unsafe_allow_html=True)
+
+    
