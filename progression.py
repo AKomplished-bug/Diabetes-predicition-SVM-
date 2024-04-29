@@ -40,7 +40,7 @@ def app():
         sugar_levels.append(sugar_level)
 
     # Display plot of sugar level progression
-    fig = plot_sugar_progression(num_months, sugar_levels, month_names)
+    fig = plot_sugar_progression( sugar_levels, month_names)
     st.pyplot(fig)
 
     # Calculate and display the average sugar level
