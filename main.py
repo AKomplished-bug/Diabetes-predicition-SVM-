@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 # Import pages
-import home_page, home_data, predict, visualise, diabetes_info
+import home_page, home_data, predict, visualise, diabetes_info, progression
 
 
 
@@ -25,7 +25,8 @@ Tabs = {
     "Data Info": home_data,
     "Prediction": predict,
     "Visualisation": visualise,
-    "Prescription": diabetes_info
+    "Prescription": diabetes_info,
+    "Sugar level progression": progression
      
 }
 
