@@ -26,7 +26,7 @@ Tabs = {
     "Prediction": predict,
     "Visualisation": visualise,
     "Prescription": diabetes_info
-    #"About me": about
+     
 }
 
 # Create a sidebar
