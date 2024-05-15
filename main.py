@@ -1,23 +1,11 @@
-"""This is the main module to run the app"""
-
 # Importing the necessary Python modules.
 import streamlit as st
 
 # Import necessary functions from web_functions
 from web import load_data
 
-# Configure the app
-st.set_page_config(
-    page_title = 'Diabetes Prediction',
-    page_icon ='🥯',
-    layout = 'wide',
-    initial_sidebar_state = 'auto'
-)
-
 # Import pages
-import home_page, home_data, predict, visualise, diabetes_info, progression
-
-
+from pages import home_page, home_data, predict, visualise, diabetes_info, pca
 
 # Dictionary for pages
 Tabs = {
@@ -26,9 +14,16 @@ Tabs = {
     "Prediction": predict,
     "Visualisation": visualise,
     "Prescription": diabetes_info,
-    "Sugar level progression": progression
-     
+    "PCA": pca,
 }
+
+# Configure the app
+st.set_page_config(
+    page_title='Diabetes Prediction',
+    page_icon='🥯',
+    layout='wide',
+    initial_sidebar_state='auto'
+)
 
 # Create a sidebar
 # Add title to sidear
@@ -40,10 +35,10 @@ page = st.sidebar.radio("Pages", list(Tabs.keys()))
 # Loading the dataset.
 df, X, y = load_data()
 
-# Call the app funciton of selected page to run
+# Call the app function of selected page to run
 if page in ["Prediction", "Visualisation"]:
     Tabs[page].app(df, X, y)
-elif (page == "Data Info"):
+elif page in ["Data Info", "PCA"]:
     Tabs[page].app(df)
 else:
-    Tabs[page].app()
+    Tabs[page].app()  # Correcting the argument passing for pages that don't require X and y
